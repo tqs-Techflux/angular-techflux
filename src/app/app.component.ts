@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-techflux';
+  sidebar : boolean = false;
+
+
+  toggleSidebar(){
+    this.sidebar = !this.sidebar;
+  }
 }
