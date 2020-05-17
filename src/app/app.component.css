@@ -31,7 +31,7 @@ a:focus {
 
 .navbar-btn {
   box-shadow: none;
-  outline: none !important;
+  outline: none;
   border: none;
 }
 
@@ -42,8 +42,14 @@ a:focus {
   margin: 40px 0;
 }
 
+#brandIcon {
+  margin: 0 5px 0 5px;
+  color: #808080;
+  font-size: 40px;
+}
+
 #brand {
-  margin: 0px 20px 0px 20px;
+  margin: 0 20px 0 20px;
   font-weight: bold;
   color: #5bc0de;
   font-size: 40px;
@@ -51,6 +57,7 @@ a:focus {
 
 #searchbar {
   border-radius: 10px;
+  background-color: #F0F0F0;
 }
 
 .input-container {

@@ -1,1 +1,15 @@
-<p>home works!</p>
+<div class="container" id="mainContainer">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let item of items">
+      <div class="productCard">
+        <img class="card-img-top" src="{{ item.picture }}"
+             style="height: 300px;"
+             alt="{{ item.name }}">
+        <div id="productName">{{ item.name }}</div>
+        <p><p>
+        <div id="productPrice">{{ item.price }} €</div>
+        <button type="button" class="btn btn-info" id="buyBtn">More Details</button>
+      </div>
+    </div>
+  </div>
+</div>

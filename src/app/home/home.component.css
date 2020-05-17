@@ -1,0 +1,38 @@
+#mainContainer {
+  height: 100%;
+  background-color: white;
+}
+
+.productCard {
+  width: 320px;
+  margin: 20px auto auto auto;
+  text-align: center;
+  padding: 1px;
+  transition: max-height 2s;
+}
+
+.productCard:hover {
+  cursor: pointer;
+  padding: 0;
+  border: 1px solid #D3D3D3;
+}
+
+.productCard:hover #buyBtn {
+  height: 40px;
+  display: block;
+  margin: 10px auto 10px auto;
+}
+
+#productName {
+  color:gray;
+}
+
+#productPrice{
+  font-weight: bold;
+}
+
+#buyBtn {
+  display:none;
+  margin: 10px 0 10px 0;
+  width: 90%;
+}
