@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SidebarService} from "./services/sidebar.service";
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-techflux';
-  sidebar : boolean = false;
+  service: SidebarService;
 
+  constructor(sidebarService: SidebarService) {
+    this.service = sidebarService;
+  }
+
+  sidebar(){
+    return this.service.sidebar;
+  }
 
   toggleSidebar(){
-    this.sidebar = !this.sidebar;
+    this.service.toggle();
   }
 }

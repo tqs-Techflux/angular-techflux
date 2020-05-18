@@ -5,9 +5,9 @@
 
 .productCard {
   width: 320px;
-  margin: auto;
+  margin: 10px auto;
   text-align: center;
-  padding: 1px 1px 60px 1px;
+  padding: 1px 1px 70px 1px;
   transition: max-height 2s;
 }
 

@@ -3,7 +3,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <i class="fas fa-tenge" id="brandIcon"></i>
-  <a class="navbar-brand" id="brand" [routerLink]=''>TechFlux</a>
+  <a class="navbar-brand" id="brand" [routerLink]="['']">TechFlux</a>
   <button type="button" id="sidebarCollapse" (click)="toggleSidebar()"  class="btn btn-info">
     <i class="fas fa-bars"></i>
   </button>
@@ -15,14 +15,14 @@
       </form>
     </ul>
     <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
-      <li class="nav-item"><a class="nav-link" href="">Log In</a></li>
-      <li class="nav-item"><a class="nav-link" href="">Sign Up</a> </li>
+      <li class="nav-item" style="outline: none"><a class="nav-link" style="outline: none" href="">Log In</a></li>
+      <li class="nav-item"><a class="nav-link" style="outline: none" [routerLink]="['/signup']">Sign Up</a> </li>
     </ul>
   </div>
 </nav>
 <div class="wrapper">
   <!-- Sidebar -->
-  <nav id="sidebar" [ngClass]="sidebar ? '' : 'active'">
+  <nav id="sidebar" [ngClass]="sidebar() ? '' : 'active'">
     <ul class="list-unstyled components">
       <p>Categories</p>
       <li>
