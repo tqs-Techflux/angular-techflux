@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Product} from "../models/product";
+import {ApiService} from "../services/api.service";
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,23 +12,20 @@ export class HomeComponent implements OnInit {
 
   items : Product[] = [];
 
-  constructor() { }
+  constructor(private api : ApiService,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // Static items
-    this.items.push(new Product("Kingston SSD 480GB", "ssd", 62.74, "assets/images/kingstonssd.webp"))
-    this.items.push(new Product("Samsung 970 EVO Plus 500GB", "ram stick", 133.95, "assets/images/ram.webp"))
-    this.items.push(new Product("Kingston SSD 480GB", "ssd", 62.74, "assets/images/kingstonssd.webp"))
-    this.items.push(new Product("Kingston SSD 480GB", "ssd", 62.74, "assets/images/kingstonssd.webp"))
-    this.items.push(new Product("Kingston SSD 480GB", "ssd", 62.74, "assets/images/kingstonssd.webp"))
-    this.items.push(new Product("Samsung 970 EVO Plus 500GB", "ram stick", 133.95, "assets/images/ram.webp"))
-    this.items.push(new Product("Samsung 970 EVO Plus 500GB", "ram stick", 133.95, "assets/images/ram.webp"))
-    this.items.push(new Product("Samsung 970 EVO Plus 500GB", "ram stick", 133.95, "assets/images/ram.webp"))
-    this.items.push(new Product("Samsung 970 EVO Plus 500GB", "ram stick", 133.95, "assets/images/ram.webp"))
-    this.items.push(new Product("Samsung 970 EVO Plus 500GB", "ram stick", 133.95, "assets/images/ram.webp"))
-    this.items.push(new Product("Samsung 970 EVO Plus 500GB", "ram stick", 133.95, "assets/images/ram.webp"))
-    this.items.push(new Product("Samsung 970 EVO Plus 500GB", "ram stick", 133.95, "assets/images/ram.webp"))
-    //
+    this.route.queryParams.subscribe((params) => {
+      var query = params['search']
+      if (query){
+        this.api.search(query).subscribe((products) => {
+          this.items=products;
+        })
+      } else {
+        this.api.populateProducts().subscribe((products) => {
+          this.items = products;
+        })
+      }
+    })
   }
-
 }

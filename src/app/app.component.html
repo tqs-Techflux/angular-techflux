@@ -9,8 +9,8 @@
   </button>
   <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar">
     <ul class="navbar-nav mx-auto text-center">
-      <form class="form-inline">
-        <input class="form-control mr-sm-2" id="searchbar" type="search" size="50" placeholder="Search on TechFlux" aria-label="Search">
+      <form class="form-inline" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+        <input class="form-control mr-sm-2" id="searchbar" type="search" size="50" placeholder="Search on TechFlux" aria-label="Search" formControlName="search">
         <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
       </form>
     </ul>
