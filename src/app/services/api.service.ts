@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {catchError} from "rxjs/operators";
 import {Observable, throwError} from "rxjs";
 import {Product} from "../models/product";
+import {Category} from "../models/category";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class ApiService {
 
   populateProducts(): Observable<Product[]>{
     return this.http.get<Product[]>(this.url.concat("/products/all")).pipe(catchError(this.formatErrors));
+  }
+
+  populateCategories(): Observable<Category[]>{
+    return this.http.get<Category[]>(this.url.concat("/categories/all")).pipe(catchError(this.formatErrors));
   }
 
   search(name: String): Observable<Product[]>{

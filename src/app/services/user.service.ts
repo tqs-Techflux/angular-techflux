@@ -24,6 +24,23 @@ export class UserService {
     private jwtService: JwtService
   ) {}
 
+  populate() {
+    // If JWT detected, attempt to get & store user's info
+    const token = this.jwtService.getToken();
+    if (token) {
+      console.log(token);
+      let headers = new HttpHeaders().set("Authorization","Bearer "+token);
+      this.apiService.get('/users/get',headers)
+        .subscribe(
+          data => this.setAuth(data),
+          err => this.purgeAuth()
+        );
+    } else {
+      // Remove any potential remnants of previous auth states
+      this.purgeAuth();
+    }
+  }
+
   setAuth(user: User) {
     // Save JWT sent from server in localstorage
     this.jwtService.saveToken(user.token);
@@ -33,9 +50,10 @@ export class UserService {
     this.isAuthenticatedSubject.next(true);
   }
 
-  getUser(token: String, id: number) {
+  getUser(token: string, id: number) {
     let headers = new HttpHeaders().set("Authorization","Bearer "+token);
-    return this.apiService.get("/users/id="+id,headers).subscribe((user) => {
+    return this.apiService.get("/users/id="+id,headers).subscribe((user: User) => {
+      user.token = token;
       this.setAuth(user);
     })
   }
