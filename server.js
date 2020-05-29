@@ -3,10 +3,10 @@ const path = require('path');
 const app = express();
 
 
-app.use(express.static(__dirname + '/dist/angularApp'));
+app.use(express.static(__dirname + '/dist/angular-techflux'));
 
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/angularApp/index.html'));
+  res.sendFile(path.join(__dirname + '/dist/angular-techflux/index.html'));
 });
 
 app.listen(process.env.PORT || 4200);
