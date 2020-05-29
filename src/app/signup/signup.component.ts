@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit,OnDestroy {
   }
 
   doSignUp() {
-    alert("pretty cool");
+    alert("");
   }
 
 }
