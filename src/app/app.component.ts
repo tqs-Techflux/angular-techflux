@@ -41,7 +41,6 @@ export class AppComponent implements OnInit{
 
   onSearch() {
     let query = this.searchForm.value.search;
-    console.log('query: ', query);
     this.searchForm.reset();
     this.router.navigate([''], { queryParams: { search: query } });
   }
@@ -56,6 +55,6 @@ export class AppComponent implements OnInit{
 
   logout(): void {
     this.userService.purgeAuth();
-    window.location.reload();
+    this.router.navigate(['']);
   }
 }
