@@ -5,7 +5,7 @@ import { Observable ,  BehaviorSubject ,  ReplaySubject } from 'rxjs';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { map ,  distinctUntilChanged } from 'rxjs/operators';
-import {User} from "../models/user";
+import {User} from '../models/user';
 
 
 @Injectable({
@@ -18,7 +18,7 @@ export class UserService {
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
-  constructor (
+  constructor(
     private apiService: ApiService,
     private http: HttpClient,
     private jwtService: JwtService
@@ -28,9 +28,8 @@ export class UserService {
     // If JWT detected, attempt to get & store user's info
     const token = this.jwtService.getToken();
     if (token) {
-      console.log(token);
-      let headers = new HttpHeaders().set("Authorization","Bearer "+token);
-      this.apiService.get('/users/get',headers)
+      const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      this.apiService.get('/users/get', headers)
         .subscribe(
           data => this.setAuth(data),
           err => this.purgeAuth()
@@ -51,11 +50,11 @@ export class UserService {
   }
 
   getUser(token: string, id: number) {
-    let headers = new HttpHeaders().set("Authorization","Bearer "+token);
-    return this.apiService.get("/users/id="+id,headers).subscribe((user: User) => {
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.apiService.get('/users/id=' + id, headers).subscribe((user: User) => {
       user.token = token;
       this.setAuth(user);
-    })
+    });
   }
 
   purgeAuth() {
@@ -71,7 +70,7 @@ export class UserService {
     return this.apiService.post('/auth/authenticate', body)
       .pipe(map(
         data => {
-          this.getUser(data.jwt,data.id);
+          this.getUser(data.jwt, data.id);
           return data;
         }
       ));
