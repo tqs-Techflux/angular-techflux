@@ -28,10 +28,14 @@ export class UserService {
     // If JWT detected, attempt to get & store user's info
     const token = this.jwtService.getToken();
     if (token) {
+      console.log('Has auth');
       const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
       this.apiService.get('/users/get', headers)
         .subscribe(
-          data => this.setAuth(data),
+          data => {
+            // TODO - FIX, this is not returning a token back to store
+            this.setAuth(data);
+          },
           err => this.purgeAuth()
         );
     } else {
