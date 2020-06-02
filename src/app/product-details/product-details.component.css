@@ -1,0 +1,24 @@
+.productImg {
+  height: 300px;
+}
+
+.productImageColumn{
+  margin: auto 14px auto auto;
+  width: 100%;
+  background-color: white;
+  text-align: center;
+}
+
+.productPrice {
+  color: dodgerblue;
+}
+
+.productInfoBlock {
+  padding: 10px;
+  margin: 0 0 10px;
+  background-color: white;
+}
+
+.productBtn {
+  width: 100%;
+}
