@@ -27,7 +27,7 @@ export class ApiService {
   }
 
   search(name: string): Observable<Product[]>{
-    return this.http.get<Product[]>(this.url + '/products/q=' + name).pipe(catchError(this.formatErrors));
+    return this.http.get<Product[]>(this.url + '/products/query/' + name).pipe(catchError(this.formatErrors));
   }
 
   get(path: string, headers?: HttpHeaders): Observable<any> {
@@ -39,6 +39,19 @@ export class ApiService {
     return this.http.post(
       `${this.url}${path}`,
       body
+    ).pipe(catchError(this.formatErrors));
+  }
+
+  put(path: string, body: any = {}): Observable<any> {
+    return this.http.put(
+      `${this.url}${path}`,
+      body
+    ).pipe(catchError(this.formatErrors));
+  }
+
+  delete(path): Observable<any> {
+    return this.http.delete(
+      `${this.url}${path}`
     ).pipe(catchError(this.formatErrors));
   }
 
