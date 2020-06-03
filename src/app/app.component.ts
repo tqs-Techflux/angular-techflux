@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {SidebarService} from './services/sidebar.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ApiService} from './services/api.service';
-import {Product} from './models/product';
 import {Router} from '@angular/router';
 import {User} from './models/user';
 import {UserService} from './services/user.service';
@@ -40,7 +39,7 @@ export class AppComponent implements OnInit{
   }
 
   onSearch() {
-    let query = this.searchForm.value.search;
+    const query = this.searchForm.value.search;
     this.searchForm.reset();
     this.router.navigate([''], { queryParams: { search: query } });
   }
