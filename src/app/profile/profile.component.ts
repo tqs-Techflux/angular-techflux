@@ -23,7 +23,8 @@ export class ProfileComponent implements OnInit {
       this.profileForm = this.formBuilder.group({
         first_name: this.user.firstName,
         last_name: this.user.lastName,
-        email: this.user.email
+        email: this.user.email,
+        contact: this.user.contact
       });
     });
   }

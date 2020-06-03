@@ -30,15 +30,19 @@ export class UserService {
     if (token) {
       console.log('Has auth');
       const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-      this.apiService.get('/users/get', headers)
+      this.apiService.get('/me', headers)
         .subscribe(
           data => {
             // TODO - FIX, this is not returning a token back to store
-            this.setAuth(data);
+            console.log(data.details);
+            data.details.token = token;
+            console.log('new', data.details);
+            this.setAuth(data.details);
           },
           err => this.purgeAuth()
         );
     } else {
+      console.log('No auth');
       // Remove any potential remnants of previous auth states
       this.purgeAuth();
     }

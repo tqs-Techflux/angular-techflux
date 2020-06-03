@@ -33,6 +33,17 @@
             </div>
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="col-lg-4" for="contact">Contact</label>
+          <div class="col-lg-6">
+            <div class="input-group">
+              <input id="contact" name="contact" type="text" formControlName="contact"
+                     placeholder="Contact" class="form-control input-lg" value="{{ user.contact }}" [readOnly]="!edit" >
+            </div>
+          </div>
+        </div>
+
         <div class="col-lg-6">
           <button *ngIf="!edit" class="btn btn-secondary" (click)="editProfile()">Edit profile</button>
           <button *ngIf="edit" class="btn btn-info" type="submit">Save</button>
