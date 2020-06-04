@@ -1,0 +1,22 @@
+name: CI for Angular
+
+on:
+  push:
+    branches: [ actions_test ]
+  pull_request:
+    branches: [ actions_test ]
+
+jobs:
+  build:
+    strategy: 
+      matrix:
+        node: [8.x, 10.x]
+        os: [ubuntu-16.04, windows-2019]
+    runs-on: ${{matrix.os}}
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: npm install
+    - name: Build
+      run: npm run build -- --prod
