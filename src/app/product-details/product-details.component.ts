@@ -17,11 +17,11 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit(): void {
-    this.seller = new User(1, 'John', 'Smith', 'smith@mail.com');
     const id = this.route.snapshot.paramMap.get('id');
     // change paths
-    this.api.get('/products/id=' + id).subscribe(data => {
+    this.api.get('/products/id/' + id).subscribe(data => {
       this.prod = data;
+      this.seller = data.owner;
     });
   }
 

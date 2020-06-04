@@ -1,1 +1,54 @@
-<p>profile works!</p>
+<div class="container profileContainer">
+  <div class="row" *ngIf="user">
+    <div class="col-lg-2">
+    </div>
+    <div class="col-lg-10 ">
+      <form class="form-horizontal" [formGroup]="profileForm" (ngSubmit)="saveProfile(profileForm.value)">
+        <div class="form-group">
+          <label class="col-lg-4" for="first_name">First Name</label>
+          <div class="col-lg-6">
+            <div class="input-group">
+              <input id="first_name" name="first_name" type="text" formControlName="newFName"
+                     placeholder="First Name" class="form-control input-lg" value="{{ user.firstName }}" [readOnly]="!edit" >
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-4" for="last_name">Last Name</label>
+          <div class="col-lg-6">
+            <div class="input-group">
+              <input id="last_name" name="last_name" type="text" formControlName="newLName"
+                     placeholder="Last Name" class="form-control input-lg" value="{{ user.lastName }}" [readOnly]="!edit" >
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-4">Email</label>
+          <div class="col-lg-6">
+            <div class="input-group">
+              <input id="email" name="email" type="email" formControlName="newEmail"
+                     placeholder="Email" class="form-control input-lg" value="{{ user.email }}" [readOnly]="!edit">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-4" for="contact">Contact</label>
+          <div class="col-lg-6">
+            <div class="input-group">
+              <input id="contact" name="contact" type="text" formControlName="newContact"
+                     placeholder="Contact" class="form-control input-lg" value="{{ user.contact }}" [readOnly]="!edit" >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <button *ngIf="!edit" class="btn btn-secondary" (click)="editProfile()">Edit profile</button>
+          <button *ngIf="edit" class="btn btn-info" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

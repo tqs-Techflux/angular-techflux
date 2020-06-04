@@ -18,14 +18,20 @@
       <li class="nav-item" style="outline: none"><a class="nav-link" style="outline: none" [routerLink]="['/login']">Log In</a></li>
       <li class="nav-item"><a class="nav-link" style="outline: none" [routerLink]="['/signup']">Sign Up</a> </li>
     </ul>
-    <ul class="nav navbar-nav navbar-right" *ngIf="isAuthenticated">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/profile']"> {{ user.firstName }} {{ user.lastName }}</a>
-      </li>
-      <li class="nav-item" (click)="logout()">
-        <a class="nav-link">Logout</a>
+
+    <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap" *ngIf="isAuthenticated">
+      <li class="nav-item dropdown mydrop">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ user.firstName }} {{ user.lastName }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['/profile']">My profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="" (click)="logout()">Logout</a>
+        </div>
       </li>
     </ul>
+
   </div>
 </nav>
 <div class="wrapper">

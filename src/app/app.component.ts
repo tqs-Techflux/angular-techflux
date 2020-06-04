@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {SidebarService} from "./services/sidebar.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {ApiService} from "./services/api.service";
-import {Product} from "./models/product";
-import {Router} from "@angular/router";
-import {User} from "./models/user";
-import {UserService} from "./services/user.service";
-import {Category} from "./models/category";
+import {SidebarService} from './services/sidebar.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ApiService} from './services/api.service';
+import {Router} from '@angular/router';
+import {User} from './models/user';
+import {UserService} from './services/user.service';
+import {Category} from './models/category';
 
 @Component({
   selector: 'app-root',
@@ -17,14 +16,14 @@ export class AppComponent implements OnInit{
   title = 'angular-techflux';
   searchForm: FormGroup;
   categories: Category[] = [];
-  public user : User;
+  public user: User;
   public isAuthenticated;
 
   constructor(private formBuilder: FormBuilder,
               private service: SidebarService,
               private router: Router,
-              private userService : UserService,
-              private api : ApiService) {
+              private userService: UserService,
+              private api: ApiService) {
     this.searchForm = this.formBuilder.group({
       search: [''],
     });
@@ -32,7 +31,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.userService.populate();
-    this.api.populateCategories().subscribe((category) => this.categories= category);
+    this.api.populateCategories().subscribe((category) => this.categories = category);
     this.userService.isAuthenticated.subscribe( (authenticated) => {
       this.isAuthenticated = authenticated;
     });
@@ -55,6 +54,6 @@ export class AppComponent implements OnInit{
 
   logout(): void {
     this.userService.purgeAuth();
-    window.location.reload();
+    this.router.navigate(['']);
   }
 }
