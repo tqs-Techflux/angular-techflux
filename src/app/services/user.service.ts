@@ -83,6 +83,10 @@ export class UserService {
     this.currentUserSubject.next(user);
   }
 
+  signUp(data: FormData): Observable<any>{
+    return this.apiService.post('/new', data);
+  }
+
   getCurrentUser(): User {
     return this.currentUserSubject.value;
   }

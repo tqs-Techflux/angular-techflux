@@ -4,22 +4,23 @@ import {catchError} from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
 import {Product} from '../models/product';
 import {Category} from '../models/category';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private url = 'http://localhost:8080';
+  private url = 'https://techflux.herokuapp.com/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
 
   private formatErrors(error: any) {
     return  throwError(error.error);
   }
 
   populateProducts(): Observable<Product[]>{
-    return this.http.get<Product[]>(this.url.concat('/products/all')).pipe(catchError(this.formatErrors));
+    return this.http.get<Product[]>(this.url.concat('/products/all')).pipe(catchError(this.formatErrors));;
   }
 
   populateCategories(): Observable<Category[]>{
@@ -32,6 +33,11 @@ export class ApiService {
 
   get(path: string, headers?: HttpHeaders): Observable<any> {
     return this.http.get(`${this.url}${path}`, { headers })
+      .pipe(catchError(this.formatErrors));
+  }
+
+  getBlob(path: string, options: any): Observable<any>{
+    return this.http.get(`${this.url}${path}`, options)
       .pipe(catchError(this.formatErrors));
   }
 

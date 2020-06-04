@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SellComponent } from './sell/sell.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import {HttpTokenInterceptor} from './interceptors/token.interceptor';
 
@@ -19,6 +20,7 @@ import {HttpTokenInterceptor} from './interceptors/token.interceptor';
     SignupComponent,
     LoginComponent,
     ProfileComponent,
+    SellComponent,
     ProductDetailsComponent
   ],
   imports: [
