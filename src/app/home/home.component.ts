@@ -1,7 +1,8 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Product} from "../models/product";
-import {ApiService} from "../services/api.service";
+import {Product} from '../models/product';
+import {ApiService} from '../services/api.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -10,22 +11,27 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  items : Product[] = [];
+  items: Product[] = [];
 
-  constructor(private api : ApiService,private route: ActivatedRoute) {}
+  constructor(private api: ApiService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      var query = params['search']
+      const query = params.search;
       if (query){
         this.api.search(query).subscribe((products) => {
-          this.items=products;
-        })
+          this.items = products;
+        });
       } else {
         this.api.populateProducts().subscribe((products) => {
-          this.items = products;
-        })
+          this.items = products.filter((prod) => {
+            if (!prod.picture){
+              prod.picture = '../../assets/images/undefined.jpg';
+            }
+            return prod;
+          });
+        });
       }
-    })
+    });
   }
 }

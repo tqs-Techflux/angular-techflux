@@ -15,12 +15,12 @@
       </form>
     </ul>
     <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap" *ngIf="!isAuthenticated">
-      <li  class="nav-item"><button class="btn btn-info" [routerLink]="['/sell']">Sell</button></li>
       <li class="nav-item" style="outline: none"><a class="nav-link" style="outline: none" [routerLink]="['/login']">Log In</a></li>
       <li class="nav-item"><a class="nav-link" style="outline: none" [routerLink]="['/signup']">Sign Up</a> </li>
     </ul>
 
     <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap" *ngIf="isAuthenticated">
+      <li  class="nav-item"><button class="btn btn-info sellBtn" [routerLink]="['/sell']">Sell</button></li>
       <li class="nav-item dropdown mydrop">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{ user.firstName }} {{ user.lastName }}
@@ -41,7 +41,7 @@
     <ul class="list-unstyled components">
       <p>Categories</p>
       <li *ngFor="let category of categories">
-        <a href="#">{{ category.categoryName }}</a>
+        <a href="#">{{ category.name }}</a>
       </li>
     </ul>
   </nav>

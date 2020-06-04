@@ -4,13 +4,13 @@
       <h5>Title</h5>
         <div class="form-group col-lg-8">
           <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" formControlName="name" required>
+          <input type="text" class="form-control" id="name" formControlName="productName" required>
         </div>
         <div class="form-group col-lg-4">
           <label for="category">Category</label>
-          <select class="form-control" id="category" formControlName="category" required>
+          <select class="form-control" id="category" formControlName="catName" required>
             <option>None</option>
-            <option *ngFor="let c of categories" [value]="c.categoryName">{{c.categoryName}}</option>
+            <option *ngFor="let c of categories" [value]="c.name">{{c.name}}</option>
           </select>
         </div>
     </div>
@@ -27,6 +27,14 @@
       <h5>Image</h5>
       <br>
       <input type="file" (change)="onFileSelected($event)">
+    </div>
+
+    <div class="sellGroup">
+      <h5>Price</h5>
+      <div class="form-group col-lg-8">
+        <label for="price">Price</label>
+        <input type="text" class="form-control" id="price" formControlName="price" required>
+      </div>
     </div>
 
     <div class="sellGroup">
