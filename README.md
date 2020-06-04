@@ -1,6 +1,7 @@
 # TechFlux
 
 An online component and electronic device store made with Angular
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tqs-Techflux_angular-techflux&metric=alert_status)](https://sonarcloud.io/dashboard?id=tqs-Techflux_angular-techflux)
 
 ## Related repositories
 
