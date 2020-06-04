@@ -1,0 +1,23 @@
+name: CI for Angular
+
+on:
+  push:
+    branches: [ actions_test ]
+  pull_request:
+    branches: [ actions_test ]
+
+jobs:
+  build:
+    strategy: 
+      matrix:
+        node: [8.x, 10.x]
+        os: [ubuntu-16.04, windows-2019]
+    runs-on: ${{matrix.os}}
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Angular Deploy gh-pages Actions
+      uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.2.0
+      with:
+        github_access_token: ${{ secrets.ACCESS_TOKEN }} # see the Configuration section for how you can create secrets
+        build_configuration: staging # The build environment for the app. please look configurations in your angular.json
