@@ -27,7 +27,13 @@ export class SellComponent implements OnInit {
   }
 
   listProduct(product) {
-    console.log(product);
+    const formData = new FormData();
+    Object.keys(product).forEach((key) => { formData.append(key, product[key]); });
+    this.api.post('/products/add', formData).subscribe(
+      (data) => {
+        console.log(data);
+      }
+    );
   }
 
   onFileSelected(event){
