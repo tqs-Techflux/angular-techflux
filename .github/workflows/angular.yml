@@ -2,9 +2,9 @@ name: CI for Angular
 
 on:
   push:
-    branches: [ actions_test ]
+    branches: [ master ]
   pull_request:
-    branches: [ actions_test ]
+    branches: [ master ]
 
 jobs:
   build:
