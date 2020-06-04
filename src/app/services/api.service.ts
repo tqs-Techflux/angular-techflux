@@ -11,7 +11,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class ApiService {
 
-  private url = 'https://techflux.herokuapp.com/';
+  private url = 'https://techflux.herokuapp.com';
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
 
