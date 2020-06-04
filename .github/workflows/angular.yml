@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Build
-      run: ng build --prod
+      run: npm run build -- --prod
     - name: Test
       run: npm test
     - name: E2E
